@@ -3,13 +3,15 @@ import 'package:croix_rouge_storage_manager_mobile/src/constants/icons.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/text_strings.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/controllers/authentication_controller.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/core/controllers/barcode_scanner_controller.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/controllers/product_controller.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/controllers/storage_product_controller.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/models/product_model.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/product/add_product_screen.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/product/product_screen.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/profile/profile_screen.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/scanner/scanner_screen.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/storage/storage_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,7 +24,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 1;
   final scannerController = Get.put(BarCodeScannerController());
-
+  final productController = Get.put(ProductController());
+  final storageProductController = Get.put(StorageProductController());
+  late ProductModel product;
 
   setCurrentIndex(int index) {
     setState(() {
@@ -31,9 +35,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> scanBarcode() async {
-    var barcode = scannerController.scan();
+    String barcode = await scannerController.scan();
+    var productFromAPI = await productController.getProductFromBarcode(barcode);
+    Get.to(
+      () => AddProductScreen(product: productFromAPI),
+    );
     setState(() {
       print(barcode);
+      product = productFromAPI;
+      print(product.name);
     });
   }
 
@@ -80,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 10,
         iconSize: 32,
         unselectedItemColor: tBlack,
-        items:  [
+        items: [
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: scanBarcode,

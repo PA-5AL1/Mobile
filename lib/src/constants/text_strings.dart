@@ -5,7 +5,8 @@ const String tOrganizationCity = 'Le Perreux-Sur-Marne';
 const String tCopyRight = '© 2023 St_Cryox';
 
 const String tHomeTitle = 'Entrepôt';
-const String tHomeText = "Bienvenue sur l'application de gestion de l'entrepôt de la Croix-Rouge du Perreux-sur-Marne.";
+const String tHomeText =
+    "Bienvenue sur l'application de gestion de l'entrepôt de la Croix-Rouge du Perreux-sur-Marne.";
 const String tLogin = 'Connexion';
 const String tLoginButton = 'Se connecter';
 const String tForgetPassword = 'Mot de passe oublié ?';
@@ -23,7 +24,8 @@ const String tReTypePasswordAgaon = 'Retaper votre mot de passe';
 const String tPasswordHint = 'Mot de passe';
 
 const String tForgetPasswordTitle = 'Mot de passe oublié';
-const String tForgetPasswordText = 'Veuillez entrer votre adresse email pour recevoir un lien de réinitialisation de votre mot de passe.';
+const String tForgetPasswordText =
+    'Veuillez entrer votre adresse email pour recevoir un lien de réinitialisation de votre mot de passe.';
 
 const String tNext = 'Suivant';
 const String tSend = 'Envoyer';
@@ -39,6 +41,7 @@ const String tHome = 'Entrepôt';
 const String tScanner = 'Scanneur';
 const String tProfile = 'Profil';
 const String tStorage = 'Produit';
+const String tProduct = 'Produit';
 
 const String tUserEmail = 'Email@gmail.com';
 
@@ -53,10 +56,12 @@ const tJoinedAt = ' 31 juillet 2022';
 const tDelete = 'Supprimer';
 
 const tDialogRemoveTitle = 'Êtes-vous sûr ?';
-const tDialogRemoveTextUser = 'Voulez-vous vraiment supprimer cet utilisateur ?';
+const tDialogRemoveTextUser =
+    'Voulez-vous vraiment supprimer cet utilisateur ?';
 const tOk = 'Ok';
 const tCancel = 'Annuler';
-const tInfoText = "La Croix-Rouge française est une association d'aide humanitaire française fondée en 1864. Elle a pour objectif de venir en aide aux personnes en difficulté en France et à l'étranger. Ses missions fondamentales sont l'urgence, le secourisme, l'action sociale, la formation, la santé et l'action internationale.";
+const tInfoText =
+    "La Croix-Rouge française est une association d'aide humanitaire française fondée en 1864. Elle a pour objectif de venir en aide aux personnes en difficulté en France et à l'étranger. Ses missions fondamentales sont l'urgence, le secourisme, l'action sociale, la formation, la santé et l'action internationale.";
 
 const tLoadingResult = 'Chargement des résultats ...';
 const tLoadingResultError = 'Erreur lors du chargement des résultats ...';

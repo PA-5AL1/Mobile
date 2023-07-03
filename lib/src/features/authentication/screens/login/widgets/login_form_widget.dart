@@ -23,75 +23,74 @@ class _LoginFormState extends State<LoginForm> {
     bool passwordVisible = true;
 
     @override
-    void initState(){
+    void initState() {
       super.initState();
       passwordVisible = true;
     }
 
     return Form(
-        key: formKey,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: tFormHeight - 5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextFormField(
-                controller: controller.email,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(tUserIcon),
-                  labelText: tEmail,
-                  hintText: tEmailHint,
-                ),
+      key: formKey,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: tFormHeight - 5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextFormField(
+              controller: controller.email,
+              decoration: const InputDecoration(
+                prefixIcon: Icon(tUserIcon),
+                labelText: tEmail,
+                hintText: tEmailHint,
               ),
-              const SizedBox(height: tFormHeight),
-              TextFormField(
-                controller: controller.password,
-                obscureText: passwordVisible,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(tFingerPrintIcon),
-                  labelText: tPassword,
-                  hintText: tPasswordHint,
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      passwordVisible
-                          ? tPasswordHideIcon
-                          : tPasswordShowIcon,
-                    ),
-                    onPressed: () {
-                      setState(
-                            () {
-                          passwordVisible = !passwordVisible;
-                        },
-                      );
-                    },
+            ),
+            const SizedBox(height: tFormHeight),
+            TextFormField(
+              controller: controller.password,
+              obscureText: passwordVisible,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(tFingerPrintIcon),
+                labelText: tPassword,
+                hintText: tPasswordHint,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    passwordVisible ? tPasswordHideIcon : tPasswordShowIcon,
                   ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () =>
-                      {Get.to(() => const ForgetPasswordMailScreen())},
-                  child: const Text(tForgetPassword),
-                ),
-              ),
-              const SizedBox(height: tFormHeight),
-              SizedBox(
-                width: double.infinity,
-                height: tFormSubmit,
-                child: ElevatedButton.icon(
-                  icon: const Icon(tLoginIcon),
-                  onPressed: () => {
-                    controller.loginUser(
-                      controller.email.text.trim(),
-                      controller.password.text.trim(),
-                    )
+                  onPressed: () {
+                    setState(
+                      () {
+                        passwordVisible = !passwordVisible;
+                      },
+                    );
                   },
-                  label: const Text(tLoginButton),
                 ),
               ),
-            ],
-          ),
-        ));
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () =>
+                    {Get.to(() => const ForgetPasswordMailScreen())},
+                child: const Text(tForgetPassword),
+              ),
+            ),
+            const SizedBox(height: tFormHeight),
+            SizedBox(
+              width: double.infinity,
+              height: tFormSubmit,
+              child: ElevatedButton.icon(
+                icon: const Icon(tLoginIcon),
+                onPressed: () => {
+                  controller.loginUser(
+                    controller.email.text.trim(),
+                    controller.password.text.trim(),
+                  )
+                },
+                label: const Text(tLoginButton),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

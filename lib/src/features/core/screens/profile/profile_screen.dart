@@ -1,4 +1,3 @@
-import 'package:croix_rouge_storage_manager_mobile/main.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/common_widgets/screen/loading_result_error_widget.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/common_widgets/screen/loading_result_widget.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/colors.dart';
@@ -26,11 +25,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final controller = Get.put(AuthenticationController());
   late Future<String> _email;
   late Future<String> _role;
+  bool themeMode = MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+          .platformBrightness ==
+      Brightness.dark;
+  late bool _isDark;
 
   @override
   initState() {
     super.initState();
     _email = retrieveCurrentUserEmail();
+    _isDark = themeMode;
   }
 
   Future<String> retrieveCurrentUserEmail() async {
@@ -38,9 +42,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // _role = await userController.getUserData(user.email);
     return user.email;
   }
-  bool _isDark = MediaQueryData.fromWindow(WidgetsBinding.instance.window)
-          .platformBrightness ==
-      Brightness.dark;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       future: _email,
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         List<Widget> children;
-        if(snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData) {
             return Scaffold(
               body: SingleChildScrollView(
@@ -76,7 +77,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(
                         width: 200,
                         child: ElevatedButton(
-                          onPressed: () => Get.to(() => const UpdateProfileScreen()),
+                          onPressed: () =>
+                              Get.to(() => const UpdateProfileScreen()),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: tRedCroixRougeColor,
                             side: BorderSide.none,
@@ -128,7 +130,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Get.defaultDialog(
                             title: tInfo,
                             middleTextStyle: TextStyle(
-                                fontSize: 14, color: _isDark ? tWhiteColor : tBlack),
+                                fontSize: 14,
+                                color: _isDark ? tWhiteColor : tBlack),
                             middleText: tInfoText,
                             textConfirm: tOk,
                             confirmTextColor: tWhiteColor,
@@ -163,8 +166,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           } else {
             return const LoadingResultErrorWidget();
           }
-        }
-        else {
+        } else {
           return const LoadingResultWidget();
         }
       },
