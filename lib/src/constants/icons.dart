@@ -1,0 +1,22 @@
+import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+
+const IconData tBarcodeIcon = LineAwesomeIcons.barcode;
+const IconData tHomeIcon = Icons.home_outlined;
+const IconData tProductsIcon = Icons.warehouse_outlined;
+const IconData tSettingsIcon = Icons.settings_outlined;
+const IconData tUserIcon = Icons.person_2_outlined;
+const IconData tFingerPrintIcon = Icons.fingerprint;
+const IconData tPasswordHideIcon = Icons.visibility;
+const IconData tPasswordShowIcon = Icons.visibility_off;
+const IconData tSignUpIcon = Icons.app_registration;
+const IconData tLoginIcon = Icons.login;
+const IconData tLogoutIcon = Icons.logout;
+const IconData tProfileIcon = Icons.person_outline;
+const IconData tInformationIcon = Icons.info_outline;
+const IconData tSunIcon = LineAwesomeIcons.sun;
+const IconData tMoonIcon = LineAwesomeIcons.moon;
+const IconData tUserPanelIcon = Icons.people_outline;
+const IconData tArrowRightIcon = LineAwesomeIcons.angle_right;
+const IconData tArrowLeftIcon = LineAwesomeIcons.angle_left;
+const IconData tErrorIcon = Icons.error_outline;

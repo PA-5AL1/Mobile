@@ -1,0 +1,3 @@
+class TBottomNavigationBarTheme {
+  TBottomNavigationBarTheme._();
+}

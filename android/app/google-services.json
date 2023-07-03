@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "951762315739",
+    "project_id": "pa-5al1-croix-rouge",
+    "storage_bucket": "pa-5al1-croix-rouge.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951762315739:android:d94f3dd7321d81efac5ffe",
+        "android_client_info": {
+          "package_name": "com.croix.rouge.croix_rouge_storage_manager_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951762315739-0ts5em7g8om2knqj3dbte50tj69547gi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-VEfGaP-fZQtEjcIBsCiBzp7nHPcS9LI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951762315739-0ts5em7g8om2knqj3dbte50tj69547gi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
