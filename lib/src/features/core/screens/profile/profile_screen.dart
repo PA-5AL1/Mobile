@@ -25,16 +25,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final controller = Get.put(AuthenticationController());
   late Future<String> _email;
   late Future<String> _role;
-  bool themeMode = MediaQueryData.fromWindow(WidgetsBinding.instance.window)
-          .platformBrightness ==
-      Brightness.dark;
+  // bool themeMode = MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+  //         .platformBrightness ==
+  //     Brightness.dark;
   late bool _isDark;
 
   @override
   initState() {
     super.initState();
     _email = retrieveCurrentUserEmail();
-    _isDark = themeMode;
+    _isDark = MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+        .platformBrightness ==
+        Brightness.dark;
   }
 
   Future<String> retrieveCurrentUserEmail() async {

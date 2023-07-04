@@ -67,3 +67,7 @@ const tLoadingResult = 'Chargement des résultats ...';
 const tLoadingResultError = 'Erreur lors du chargement des résultats ...';
 
 const tNoUsers = 'Aucun utilisateur trouvé';
+
+const tCategory = 'Catégorie';
+const tName = 'Nom';
+const tBrand = 'Marque';

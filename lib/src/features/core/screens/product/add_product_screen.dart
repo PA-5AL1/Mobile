@@ -42,7 +42,8 @@ class AddProductScreen extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.red,
+                          color: tBlack,
+                          width: 2,
                         ),
                         borderRadius: BorderRadius.circular(50.0)),
                     padding: const EdgeInsets.all(tDefaultSize),
@@ -55,10 +56,32 @@ class AddProductScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: tFormHeight),
                         TextFormField(
-                          keyboardType: TextInputType.number,
+                          initialValue: product.name,
+                          readOnly: true,
                           decoration: const InputDecoration(
-                            labelText: tEmail,
-                            hintText: tEmailHint,
+                            labelText: 'Nom',
+                          ),
+                        ),
+                        const SizedBox(height: tFormHeight),
+                        FormRow(
+                          label: tCategory,
+                          formField: DropdownButton(
+                            hint: const Text(tCategory),
+                            items: [
+                              'Alimentaire',
+                              'Hygiene',
+                              'Test',
+                              'Toto',
+                              'Tata'
+                            ]
+                                .map(
+                                  (category) => DropdownMenuItem(
+                                    value: category,
+                                    child: Text(category),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (value) {},
                           ),
                         ),
                         const SizedBox(height: tFormHeight),
@@ -70,6 +93,15 @@ class AddProductScreen extends StatelessWidget {
                           ],
                           decoration: InputDecoration(
                             labelText: 'Quantité',
+                            hintText: '0',
+                          ),
+                        ),
+                        const SizedBox(height: tFormHeight),
+                        TextFormField(
+                          initialValue: product.barcode,
+                          readOnly: true,
+                          decoration: const InputDecoration(
+                            labelText: 'Code barre',
                           ),
                         ),
                         const SizedBox(height: tFormHeight),
@@ -78,7 +110,7 @@ class AddProductScreen extends StatelessWidget {
                           height: 40,
                           child: IconButton(
                             color: tRedCroixRougeColor,
-                            iconSize: 35,
+                            iconSize: 40,
                             icon: const Icon(tAddIcon),
                             onPressed: () => {},
                           ),
@@ -93,5 +125,27 @@ class AddProductScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class FormRow extends StatelessWidget {
+  const FormRow({
+    super.key,
+    required this.label,
+    required this.formField,
+  });
+
+  final String label;
+  final Widget formField;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Text(
+        '$label : ',
+        style: const TextStyle(color: tSecondaryColor),
+      ),
+      formField,
+    ]);
   }
 }

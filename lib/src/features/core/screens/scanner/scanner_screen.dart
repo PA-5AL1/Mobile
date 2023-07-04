@@ -63,10 +63,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
                   'Barcode : $_scanBarcodeResult\n',
                   style: const TextStyle(fontSize: 20),
                 ),
-                Text(
-                  'Result: $_result.name\n',
-                  style: const TextStyle(fontSize: 20),
-                ),
               ],
             ),
           ),

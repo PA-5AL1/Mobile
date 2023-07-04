@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/screens/login/login_screen.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/utils/theme/theme.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         future: _initialization,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            Get.put(AuthenticationRepository());
+            Get.lazyPut(() => AuthenticationRepository());
+            return const LoginScreen();
           }
           return SplashScreen();
         },

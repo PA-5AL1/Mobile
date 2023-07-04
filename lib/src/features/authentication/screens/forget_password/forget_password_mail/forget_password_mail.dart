@@ -1,10 +1,9 @@
 import 'package:croix_rouge_storage_manager_mobile/src/common_widgets/screen/form/form_header_widget.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/constants/icons.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/image_strings.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/sizes.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/text_strings.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/controllers/authentication_controller.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/screens/forget_password/forget_password_otp/otp_screen.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,6 +16,12 @@ class ForgetPasswordMailScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(tArrowLeftIcon),
+            onPressed: () => Get.back(),
+          ),
+        ),
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(tDefaultSize),
@@ -47,20 +52,18 @@ class ForgetPasswordMailScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: tDefaultSize),
-                     SizedBox(
-                       width: double.infinity,
-                        child: ElevatedButton (
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
                           onPressed: () => {
-                            controller.sendPasswordResetEmail( controller.email.text.trim(),),
+                            controller.sendPasswordResetEmail(
+                              controller.email.text.trim(),
+                            ),
                             // Get.to(() => const OTPScreen())
-                            if(controller.email.text.trim() != "")
-                            {
-                              Get.to(() => const LoginScreen())
-                            }
                           },
                           child: const Text(tSend),
                         ),
-                     ),
+                      ),
                     ],
                   ),
                 ),
