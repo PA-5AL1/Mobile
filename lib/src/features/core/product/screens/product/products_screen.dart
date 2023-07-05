@@ -176,8 +176,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         ),
                         actions: [
                           ElevatedButton(
-                            onPressed: () {
-                              storageProductController
+                            onPressed: () async {
+                              await storageProductController
                                   .deleteProduct(product.barcode);
                               Get.back();
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -188,6 +188,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                   ),
                                 ),
                               );
+                              _refresh();
                             },
                             child: const Text(tDelete),
                           ),

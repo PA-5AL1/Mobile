@@ -55,11 +55,26 @@ class ProductRepository extends GetxController {
         .toList();
   }
 
-  Future<void> removeProduct(String id) async {
-    await _db.collection("Products").doc(id).delete();
+  Future<void> removeProduct(String barcode) async {
+    await _db
+        .collection("Products")
+        .where("barcode", isEqualTo: barcode)
+        .get()
+        .then((snapshot) {
+      snapshot.docs.first.reference.delete();
+    });
   }
 
-  Future<void> updateProduct(String id, StorageProductModel product) async {
-    await _db.collection("Products").doc(id).update(product.toJson());
+  Future<void> updateProduct(
+      String barcode, StorageProductModel product) async {
+    await _db
+        .collection("Products")
+        .where("barcode", isEqualTo: barcode)
+        .get()
+        .then(
+      (snapshot) {
+        snapshot.docs.first.reference.update(product.toJson());
+      },
+    );
   }
 }
