@@ -10,15 +10,30 @@ class TTextTheme {
       color: tRedCroixRougeColor,
     ),
     titleLarge: GoogleFonts.montserrat(
-        color: Colors.black87,
+      color: Colors.black87,
     ),
     titleMedium: GoogleFonts.montserrat(
-        color: Colors.black54,
+      color: Colors.black54,
+    ),
+    titleSmall: GoogleFonts.montserrat(
+      color: Colors.black54,
     ),
     bodyLarge: GoogleFonts.montserrat(
       color: Colors.black87,
     ),
+    bodyMedium: GoogleFonts.montserrat(
+      color: Colors.black54,
+    ),
     bodySmall: GoogleFonts.montserrat(
+      color: Colors.black54,
+    ),
+    labelLarge: GoogleFonts.montserrat(
+      color: Colors.black54,
+    ),
+    labelMedium: GoogleFonts.montserrat(
+      color: Colors.black54,
+    ),
+    labelSmall: GoogleFonts.montserrat(
       color: Colors.black54,
     ),
   );
@@ -27,9 +42,12 @@ class TTextTheme {
       color: tRedCroixRougeColor,
     ),
     titleLarge: GoogleFonts.montserrat(
-        color: Colors.white70,
+      color: Colors.white70,
     ),
     titleMedium: GoogleFonts.montserrat(
+      color: Colors.white70,
+    ),
+    titleSmall: GoogleFonts.montserrat(
       color: Colors.white70,
     ),
     bodyLarge: GoogleFonts.montserrat(
@@ -39,6 +57,15 @@ class TTextTheme {
       color: Colors.white,
     ),
     bodySmall: GoogleFonts.montserrat(
+      color: Colors.white54,
+    ),
+    labelLarge: GoogleFonts.montserrat(
+      color: Colors.white54,
+    ),
+    labelMedium: GoogleFonts.montserrat(
+      color: Colors.white54,
+    ),
+    labelSmall: GoogleFonts.montserrat(
       color: Colors.white54,
     ),
   );

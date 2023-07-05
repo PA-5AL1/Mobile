@@ -5,7 +5,6 @@ import 'package:croix_rouge_storage_manager_mobile/src/constants/icons.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/sizes.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/text_strings.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/controllers/authentication_controller.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,11 +18,19 @@ class UpdateProfileScreen extends StatefulWidget {
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final controller = Get.put(AuthenticationController());
   late Future<String> _email;
+  bool hidePassword = true;
 
   @override
   initState() {
     super.initState();
+    controller.password.clear();
     _email = retrieveCurrentUserEmail();
+  }
+
+  togglePassword() {
+    setState(() {
+      hidePassword = !hidePassword;
+    });
   }
 
   Future<String> retrieveCurrentUserEmail() async {
@@ -68,11 +75,19 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         const SizedBox(height: tFormHeight),
                         TextFormField(
                           controller: controller.password,
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.fingerprint),
-                            labelText: tPassword,
+                          obscureText: hidePassword,
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.fingerprint),
+                            labelText: tNewPassword,
                             hintText: tPasswordHint,
-                            suffixIcon: Icon(Icons.remove_red_eye_sharp),
+                            suffixIcon: IconButton(
+                              icon: hidePassword
+                                  ? const Icon(Icons.visibility_off)
+                                  : const Icon(Icons.remove_red_eye_sharp),
+                              onPressed: () {
+                                togglePassword();
+                              },
+                            ),
                           ),
                         ),
                         const SizedBox(height: tDefaultSize + 10),
@@ -95,8 +110,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         const SizedBox(height: tDefaultSize * 2),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text.rich(
+                          children: const [
+                            Text.rich(
                               TextSpan(
                                 text: tJoined,
                                 style: TextStyle(fontSize: 12),
@@ -111,20 +126,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                 ],
                               ),
                             ),
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Colors.redAccent.withOpacity(0.1),
-                                elevation: 0,
-                                foregroundColor: Colors.red,
-                                shape: const StadiumBorder(),
-                                side: BorderSide.none,
-                              ),
-                              child: const Text(tDelete),
-                            )
                           ],
-                        )
+                        ),
                       ],
                     ))
                   ],

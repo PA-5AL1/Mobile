@@ -10,13 +10,17 @@ class AuthenticationController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
 
-  void registerUser(String email, String password) {
-    AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password);
-    UserRepository.instance.createUser(UserModel(email: email, password: password, role: 'user'));
+  Future<String> registerUser(String email, String password) async {
+    var errorMessage = await AuthenticationRepository.instance
+        .createUserWithEmailAndPassword(email, password);
+    UserRepository.instance
+        .createUser(UserModel(email: email, password: password, role: 'user'));
+    return errorMessage;
   }
 
-  void loginUser(String email, String password) {
-    AuthenticationRepository.instance.loginWithEmailAndPassword(email, password);
+  Future<String> loginUser(String email, String password) async {
+    return await AuthenticationRepository.instance
+        .loginWithEmailAndPassword(email, password);
   }
 
   void logoutUser() {
@@ -35,5 +39,6 @@ class AuthenticationController extends GetxController {
     AuthenticationRepository.instance.updatePassword(newPassword);
   }
 
-  Future<UserModel> get currentUser async => await AuthenticationRepository.instance.currentUser();
+  Future<UserModel> get currentUser async =>
+      await AuthenticationRepository.instance.currentUser();
 }

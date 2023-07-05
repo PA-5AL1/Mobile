@@ -24,24 +24,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final userController = Get.put(UserController());
   final controller = Get.put(AuthenticationController());
   late Future<String> _email;
-  late Future<String> _role;
-  // bool themeMode = MediaQueryData.fromWindow(WidgetsBinding.instance.window)
-  //         .platformBrightness ==
-  //     Brightness.dark;
-  late bool _isDark;
+  bool _isDark = MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+          .platformBrightness ==
+      Brightness.dark;
 
   @override
   initState() {
     super.initState();
     _email = retrieveCurrentUserEmail();
-    _isDark = MediaQueryData.fromWindow(WidgetsBinding.instance.window)
-        .platformBrightness ==
-        Brightness.dark;
+    _isDark = false;
   }
 
   Future<String> retrieveCurrentUserEmail() async {
     var user = await controller.currentUser;
-    // _role = await userController.getUserData(user.email);
     return user.email;
   }
 
@@ -51,7 +46,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return FutureBuilder(
       future: _email,
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-        List<Widget> children;
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData) {
             return Scaffold(
@@ -95,18 +89,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ProfileMenuWidget(
                         title: _isDark ? tLightMode : tDarkMode,
                         icon: _isDark ? tSunIcon : tMoonIcon,
-                        onPress: () {},
-                        trailing: Switch(
-                          value: _isDark,
-                          onChanged: (value) {
-                            Get.changeThemeMode(
-                              value ? ThemeMode.dark : ThemeMode.light,
-                            );
-                            setState(() {
-                              _isDark = value;
-                            });
-                          },
-                        ),
+                        onPress: () {
+                          Get.changeThemeMode(
+                            _isDark ? ThemeMode.light : ThemeMode.dark,
+                          );
+                          setState(() {
+                            _isDark = !_isDark;
+                          });
+                        },
                       ),
                       ProfileMenuWidget(
                         title: tUsersPanel,

@@ -25,23 +25,27 @@ class _ProfileMenuWidgetState extends State<ProfileMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        onTap: widget.onPress,
-        leading: Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: tSecondaryColor.withOpacity(0.1),
-          ),
-          child: Icon(
-            widget.icon,
-            color: tRedCroixRougeColor,
-          ),
+      onTap: widget.onPress,
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: tSecondaryColor.withOpacity(0.1),
         ),
-        title: Text(
-          widget.title,
-          style: Theme.of(context).textTheme.bodyLarge?.apply(color: widget.titleColor),
+        child: Icon(
+          widget.icon,
+          color: tRedCroixRougeColor,
         ),
-        trailing: widget.trailing);
+      ),
+      title: Text(
+        widget.title,
+        style: Theme.of(context)
+            .textTheme
+            .bodyLarge
+            ?.apply(color: widget.titleColor),
+      ),
+      trailing: widget.trailing,
+    );
   }
 }

@@ -18,6 +18,12 @@ class LoginWithEmailAndPasswordFailure {
       case 'user-disabled':
         return const LoginWithEmailAndPasswordFailure(
             'Votre compte a été désactivé.');
+      case 'too-many-requests':
+        return const LoginWithEmailAndPasswordFailure(
+            'Trop de tentatives de connexion. Veuillez réessayer plus tard.');
+      case 'network-request-failed':
+        return const LoginWithEmailAndPasswordFailure(
+            'Erreur de connexion. Veuillez vérifier votre connexion internet.');
       default:
         return const LoginWithEmailAndPasswordFailure();
     }

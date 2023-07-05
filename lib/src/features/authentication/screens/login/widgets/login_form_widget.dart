@@ -3,6 +3,8 @@ import 'package:croix_rouge_storage_manager_mobile/src/constants/sizes.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/text_strings.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/controllers/authentication_controller.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/screens/forget_password/forget_password_mail/forget_password_mail.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/utils/services/exception_handler_service.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/utils/services/internet_connection_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,17 +18,18 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  bool hidePassword = true;
+
+  togglePassword() {
+    setState(() {
+      hidePassword = !hidePassword;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AuthenticationController());
     final formKey = GlobalKey<FormState>();
-    bool passwordVisible = true;
-
-    @override
-    void initState() {
-      super.initState();
-      passwordVisible = true;
-    }
 
     return Form(
       key: formKey,
@@ -46,21 +49,17 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: tFormHeight),
             TextFormField(
               controller: controller.password,
-              obscureText: passwordVisible,
+              obscureText: hidePassword,
               decoration: InputDecoration(
                 prefixIcon: const Icon(tFingerPrintIcon),
                 labelText: tPassword,
                 hintText: tPasswordHint,
                 suffixIcon: IconButton(
-                  icon: Icon(
-                    passwordVisible ? tPasswordHideIcon : tPasswordShowIcon,
-                  ),
+                  icon: hidePassword
+                      ? const Icon(Icons.visibility_off)
+                      : const Icon(Icons.remove_red_eye_sharp),
                   onPressed: () {
-                    setState(
-                      () {
-                        passwordVisible = !passwordVisible;
-                      },
-                    );
+                    togglePassword();
                   },
                 ),
               ),
@@ -79,11 +78,44 @@ class _LoginFormState extends State<LoginForm> {
               height: tFormSubmit,
               child: ElevatedButton.icon(
                 icon: const Icon(tLoginIcon),
-                onPressed: () => {
-                  controller.loginUser(
-                    controller.email.text.trim(),
-                    controller.password.text.trim(),
-                  )
+                onPressed: () async {
+                  await InternetConnectionService.checkConnection(context);
+
+                  var email = controller.email.text.trim();
+                  var password = controller.password.text.trim();
+
+                  if (context.mounted) {
+                    if (email == '') {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          duration: Duration(milliseconds: 500),
+                          content: Center(
+                            child: Text(tEmailCantBeEmpty),
+                          ),
+                        ),
+                      );
+                      return;
+                    }
+
+                    if (password == '') {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          duration: Duration(milliseconds: 500),
+                          content: Center(
+                            child: Text(tPasswordCantBeEmpt),
+                          ),
+                        ),
+                      );
+                      return;
+                    }
+                  }
+                  var error = await controller.loginUser(
+                    email,
+                    password,
+                  );
+                  if (context.mounted) {
+                    ExceptionHandlerService.handleError(error, context);
+                  }
                 },
                 label: const Text(tLoginButton),
               ),

@@ -19,6 +19,12 @@ class SignUpWithEmailAndPasswordFailure {
       case 'user-disabled':
         return const SignUpWithEmailAndPasswordFailure(
             'L\'utilisateur est désactivé.');
+        case 'too-many-requests':
+        return const SignUpWithEmailAndPasswordFailure(
+            'Trop de tentatives de connexion. Veuillez réessayer plus tard.');
+      case 'network-request-failed':
+        return const SignUpWithEmailAndPasswordFailure(
+            'Erreur de connexion. Veuillez vérifier votre connexion internet.');
       default:
         return const SignUpWithEmailAndPasswordFailure();
     }

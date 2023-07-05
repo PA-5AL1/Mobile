@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/colors.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/icons.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/sizes.dart';
@@ -26,6 +27,10 @@ class AddProductScreen extends StatelessWidget {
             icon: const Icon(tArrowLeftIcon),
             onPressed: () => Get.back(),
           ),
+          title: const Text(
+            tProduct,
+          ),
+          centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -33,11 +38,6 @@ class AddProductScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  tProduct,
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
-                const SizedBox(height: tFormHeight * 2),
                 Form(
                   child: Container(
                     decoration: BoxDecoration(
@@ -50,19 +50,25 @@ class AddProductScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.network(
-                          product.image,
-                          scale: 2,
+                        CachedNetworkImage(
+                          placeholder: (context, url) =>
+                              const CircularProgressIndicator(),
+                          imageUrl: product.image,
                         ),
                         const SizedBox(height: tFormHeight),
-                        TextFormField(
-                          initialValue: product.name,
-                          readOnly: true,
-                          decoration: const InputDecoration(
-                            labelText: 'Nom',
+                        FormRow(
+                          label: tName,
+                          formField: Flexible(
+                            child: Text(product.name),
                           ),
                         ),
-                        const SizedBox(height: tFormHeight),
+                        FormRow(
+                          label: tBrand,
+                          formField: Flexible(
+                            child: Text(product.brand),
+                          ),
+                        ),
+                        const SizedBox(height: tFormHeight / 2),
                         FormRow(
                           label: tCategory,
                           formField: DropdownButton(
@@ -92,22 +98,16 @@ class AddProductScreen extends StatelessWidget {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: InputDecoration(
-                            labelText: 'Quantité',
-                            hintText: '0',
+                            labelText: tQuantity,
+                            hintText: tQuantityHint,
                           ),
                         ),
                         const SizedBox(height: tFormHeight),
-                        TextFormField(
-                          initialValue: product.barcode,
-                          readOnly: true,
-                          decoration: const InputDecoration(
-                            labelText: 'Code barre',
-                          ),
-                        ),
+                        FormRow(
+                            label: tBarcode, formField: Text(product.barcode)),
+                        const SizedBox(height: tFormHeight / 2),
                         const SizedBox(height: tFormHeight),
                         SizedBox(
-                          width: 40,
-                          height: 40,
                           child: IconButton(
                             color: tRedCroixRougeColor,
                             iconSize: 40,

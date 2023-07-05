@@ -71,3 +71,10 @@ const tNoUsers = 'Aucun utilisateur trouvé';
 const tCategory = 'Catégorie';
 const tName = 'Nom';
 const tBrand = 'Marque';
+const tBarcode = 'Code barre';
+const tQuantity = 'Quantité';
+const tQuantityHint = '5';
+
+const tNoInternetConnection = 'Pas de connexion internet';
+const tEmailCantBeEmpty = 'L\'email ne peut pas être vide';
+const tPasswordCantBeEmpt = 'Le mot de passe ne peut pas être vide';

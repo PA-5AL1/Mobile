@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Croix Rouge Storage Manager',
       theme: TAPPTheme.lightTheme,
       darkTheme: TAPPTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       home: FutureBuilder(
         future: _initialization,
         builder: (context, snapshot) {
