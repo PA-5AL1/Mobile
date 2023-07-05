@@ -2,15 +2,11 @@ import 'package:croix_rouge_storage_manager_mobile/src/constants/colors.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/icons.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/text_strings.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/controllers/authentication_controller.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/controllers/barcode_scanner_controller.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/controllers/product_controller.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/controllers/storage_product_controller.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/models/product_model.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/product/add_product_screen.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/product/product_screen.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/profile/profile_screen.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/scanner/scanner_screen.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/storage/storage_screen.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/product/controllers/barcode_scanner_controller.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/product/screens/product/product_category_screen.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/product/screens/scanner/scanner_screen.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/product/screens/storage/storage_screen.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/profile/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,10 +19,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 1;
-  final scannerController = Get.put(BarCodeScannerController());
-  final productController = Get.put(ProductController());
-  final storageProductController = Get.put(StorageProductController());
-  late ProductModel product;
 
   setCurrentIndex(int index) {
     setState(() {
@@ -34,22 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  Future<void> scanBarcode() async {
-    String barcode = await scannerController.scan();
-    var productFromAPI = await productController.getProductFromBarcode(barcode);
-    Get.to(
-      () => AddProductScreen(product: productFromAPI),
-    );
-    setState(() {
-      print(barcode);
-      product = productFromAPI;
-      print(product.name);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final authController = Get.put(AuthenticationController());
+    final barCodeController = Get.put(BarCodeScannerController());
 
     return Scaffold(
       appBar: AppBar(
@@ -62,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const [
           Text(tScanner),
           Text(tHome),
-          Text(tStorage),
+          Text(tProducts),
           Text(tProfile),
         ][_currentIndex],
         centerTitle: true,
@@ -79,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: const [
         ScannerScreen(),
         StorageScreen(),
-        ProductScreen(),
+        ProductCategoryScreen(),
         ProfileScreen(),
       ][_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -91,33 +71,28 @@ class _HomeScreenState extends State<HomeScreen> {
         iconSize: 32,
         unselectedItemColor: tBlack,
         items: [
-          BottomNavigationBarItem(
-            icon: IconButton(
-              onPressed: scanBarcode,
+          buildBottomNavigationBarItem(
+            IconButton(
+              onPressed: barCodeController.scanBarcode,
               icon: const Icon(tBarcodeIcon),
             ),
-            label: tScanner,
+            tScanner,
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              tHomeIcon,
-            ),
-            label: tHome,
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              tProductsIcon,
-            ),
-            label: tStorage,
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              tSettingsIcon,
-            ),
-            label: tProfile,
-          ),
+          buildBottomNavigationBarItem(const Icon(tHomeIcon), tHome),
+          buildBottomNavigationBarItem(const Icon(tProductsIcon), tProducts),
+          buildBottomNavigationBarItem(const Icon(tSettingsIcon), tProfile),
         ],
       ),
+    );
+  }
+
+  BottomNavigationBarItem buildBottomNavigationBarItem(
+    Widget icon,
+    String label,
+  ) {
+    return BottomNavigationBarItem(
+      icon: icon,
+      label: label,
     );
   }
 }

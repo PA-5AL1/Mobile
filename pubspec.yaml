@@ -30,6 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
   flutter_barcode_scanner: ^2.0.0
   permission_handler: ^8.3.0
 
@@ -47,6 +50,7 @@ dependencies:
   cloud_firestore: ^4.8.2
   cached_network_image: ^3.2.3
   connectivity_plus: ^4.0.1
+  quantity_input: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +100,13 @@ flutter:
       - assets/images/croix-rouge.png
       - assets/images/forgot-password.jpg
       - assets/images/profile.png
+      - assets/images/alimentaire.png
+      - assets/images/secourisme.png
+      - assets/images/hygiene.png
+      - assets/images/logistique.png
+      - assets/images/outil-bricolage.png
+      - assets/images/uniforme.png
+      - assets/images/materiel-formation.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,5 +1,6 @@
 import 'package:croix_rouge_storage_manager_mobile/src/constants/api_url.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/models/product_model.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/product/models/product_model.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/product/models/storage_product_model.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/utils/services/http_client_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

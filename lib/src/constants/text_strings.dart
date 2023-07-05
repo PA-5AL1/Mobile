@@ -40,7 +40,7 @@ const String tLogout = 'Déconnexion';
 const String tHome = 'Entrepôt';
 const String tScanner = 'Scanneur';
 const String tProfile = 'Profil';
-const String tStorage = 'Produit';
+const String tProducts = 'Produits';
 const String tProduct = 'Produit';
 
 const String tUserEmail = 'Email@gmail.com';
@@ -74,7 +74,18 @@ const tBrand = 'Marque';
 const tBarcode = 'Code barre';
 const tQuantity = 'Quantité';
 const tQuantityHint = '5';
+const tExpiryDate = 'Date d\'expiration';
 
 const tNoInternetConnection = 'Pas de connexion internet';
 const tEmailCantBeEmpty = 'L\'email ne peut pas être vide';
 const tPasswordCantBeEmpt = 'Le mot de passe ne peut pas être vide';
+
+const tProductAdded = 'Produit ajouté';
+const tAddProduct = 'Ajouter un produit';
+const tNoProducts = 'Aucun produit trouvé';
+const tSnackBarRemoveProduct = 'Le produit a été supprimé';
+
+const tShowDialogWarningDeleteProduct =
+    'Voulez-vous vraiment supprimer ce produit ?';
+
+const tProductTables = 'Tableaux des produits';

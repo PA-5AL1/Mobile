@@ -6,10 +6,10 @@ import 'package:croix_rouge_storage_manager_mobile/src/constants/image_strings.d
 import 'package:croix_rouge_storage_manager_mobile/src/constants/sizes.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/text_strings.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/controllers/authentication_controller.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/controllers/user_controller.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/profile/update_profile_screen.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/profile/user_panel_screen.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/screens/profile/widgets/profile_menu_widget.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/profile/controllers/user_controller.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/profile/screens/profile/update_profile_screen.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/profile/screens/profile/user_panel_screen.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/profile/screens/profile/widgets/profile_menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -122,8 +122,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Get.defaultDialog(
                             title: tInfo,
                             middleTextStyle: TextStyle(
-                                fontSize: 14,
-                                color: _isDark ? tWhiteColor : tBlack),
+                              fontSize: 14,
+                              color: _isDark ? tWhiteColor : tBlack,
+                            ),
                             middleText: tInfoText,
                             textConfirm: tOk,
                             confirmTextColor: tWhiteColor,

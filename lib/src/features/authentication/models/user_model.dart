@@ -35,9 +35,9 @@ class UserModel {
 
   toJson() {
     return {
-      'Email': email,
-      'Password': password,
-      'Role': role,
+      'email': email,
+      'password': password,
+      'role': role,
     };
   }
 }

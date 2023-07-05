@@ -5,7 +5,7 @@ import 'package:croix_rouge_storage_manager_mobile/src/constants/icons.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/sizes.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/constants/text_strings.dart';
 import 'package:croix_rouge_storage_manager_mobile/src/features/authentication/models/user_model.dart';
-import 'package:croix_rouge_storage_manager_mobile/src/features/core/controllers/user_controller.dart';
+import 'package:croix_rouge_storage_manager_mobile/src/features/core/profile/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +37,7 @@ class _UserPanelScreenState extends State<UserPanelScreen> {
           builder: (BuildContext context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasData) {
-                if(snapshot.data!.isEmpty) {
+                if (snapshot.data!.isEmpty) {
                   return const Center(
                     child: Text(tNoUsers),
                   );

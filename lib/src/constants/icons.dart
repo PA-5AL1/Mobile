@@ -21,3 +21,5 @@ const IconData tArrowRightIcon = LineAwesomeIcons.angle_right;
 const IconData tArrowLeftIcon = LineAwesomeIcons.angle_left;
 const IconData tErrorIcon = Icons.error_outline;
 const IconData tAddIcon = Icons.add_circle_sharp;
+const IconData tCloseIcon = Icons.close;
+const IconData tDeleteicon = Icons.delete;
